@@ -10,7 +10,7 @@ function Checkbox(props) {
             <br/>
             <Field name={name}>
                 {({ field }) => {
-                    console.log("field",field)
+                    //console.log("field",field)
                     return (options.map(option=> {
                         return (
                             <React.Fragment key={option.key}>
@@ -19,18 +19,16 @@ function Checkbox(props) {
                                     value={option.value}
                                     id={option.value}
                                     {...field}
-                                    {...rest}
+                                    
                                     checked={field.value.includes(option.value)}/>
 
                             <label htmlFor={option.value}>{option.key}</label>
                             </React.Fragment>)
                     }))
 
-                }
-
-                }
+        }}
             </Field>
-            <ErrorMessage name={name} component={TextError}/>
+        <ErrorMessage name={name} component={TextError}/>
         </div>
     )
     

@@ -1,25 +1,26 @@
 import React from 'react';
 import { Form, ErrorMessage, Field } from 'formik';
 import TextError from './TextError';
-
+import FormLabel from '@mui/material/FormLabel';
 function RadioButtons(props) {
-    const { name, label, options, ...rest } = props;
+    const { name, label, options,handleChange, ...rest } = props;
     return (
         <div>
-            <label htmlFor={name}>{label}</label><br/>
-            <Field name={name}>
+            <FormLabel htmlFor={name}>{label}</FormLabel><br/>
+            <Field name={name} onChange={handleChange}>
                 {({ field }) => {
-                    console.log("field",field)
+                    //console.log("field",field)
                     return (options.map((option) => {
-                        return (
-                            <React.Fragment key={option.key}>
+                        return (<React.Fragment key={option.key}>
 
                                 <input type="radio"
                                     value={option.value}
                                     id={option.value}
+                                    name={name}
+                                    
                                     {...field}
-                                    {...rest}
-                                    checked={option.value === field.value}/>
+                                    />
+                                    
 
                             <label htmlFor={option.value}>{option.key}</label>
                             </React.Fragment>)
@@ -29,7 +30,7 @@ function RadioButtons(props) {
 
                 }
             </Field>
-            <ErrorMessage name={name} component={TextError}/>
+            
         </div>
     )
 }
